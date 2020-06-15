@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 23.0.2, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 123.3 25" style="enable-background:new 0 0 123.3 25;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:url(#XMLID_3_);}
+	.st1{fill:#FFFFFF;}
+</style>
+<linearGradient id="XMLID_3_" gradientUnits="userSpaceOnUse" x1="7.791612e-02" y1="12.7756" x2="123.3403" y2="12.7756" gradientTransform="matrix(1 0 0 -1 0 25.2756)">
+	<stop  offset="0" style="stop-color:#C7C8CA"/>
+	<stop  offset="0.5218" style="stop-color:#909191"/>
+	<stop  offset="1" style="stop-color:#41403F"/>
+</linearGradient>
+<path id="XMLID_2_" class="st0" d="M110.8,25H12.6C5.7,25,0.1,19.4,0.1,12.5l0,0C0.1,5.6,5.7,0,12.6,0h98.3
+	c6.9,0,12.5,5.6,12.5,12.5l0,0C123.3,19.4,117.7,25,110.8,25z"/>
+<path id="XMLID_5_" class="st1" d="M110.5,1.5c-6.1,0-11,4.9-11,11s4.9,11,11,11s11-4.9,11-11S116.6,1.5,110.5,1.5z M111.9,18.3
+	c-0.3,0.3-0.6,0.4-1,0.4s-0.7-0.1-1-0.4c-0.6-0.6-0.6-1.4,0-2l2.4-2.4h-7c-0.8,0-1.4-0.6-1.4-1.4c0-0.8,0.6-1.4,1.4-1.4h7l-2.4-2.4
+	c-0.6-0.6-0.6-1.4,0-2s1.4-0.6,2,0l5.8,5.8L111.9,18.3z"/>
+<g>
+	<path class="st1" d="M16,6.7h4c2.3,0,4.2,1,4.2,3.6c0,2.5-1.9,3.6-4.2,3.6h-2.3v4.4H16V6.7z M20,12.3c1.2,0,2.4-0.6,2.4-2
+		S21.2,8.2,20,8.2h-2.3v4.1H20z"/>
+	<path class="st1" d="M30.5,6.5c2.7,0,5.1,2.2,5.1,5.9c0,3.7-2.4,5.9-5.1,5.9s-5.1-2.2-5.1-5.9C25.4,8.7,27.8,6.5,30.5,6.5z
+		 M30.5,16.8c1.6,0,3.2-1.3,3.2-4.4c0-3-1.6-4.4-3.2-4.4c-1.6,0-3.2,1.4-3.2,4.4C27.3,15.5,28.9,16.8,30.5,16.8z"/>
+	<path class="st1" d="M39.6,8.2H36V6.7h9v1.5h-3.6v10h-1.8V8.2z"/>
+	<path class="st1" d="M45.7,6.7h1.9L51,16l3.4-9.3h1.8l-4.3,11.5h-2L45.7,6.7z"/>
+	<path class="st1" d="M63.1,15.3c-0.8-1.3-1.4-2-2.6-2h-1.1v4.9h-1.8V6.7h4.2c2.1,0,3.9,1,3.9,3.3c0,1.8-1,2.8-2.4,3.2
+		c0.6,0.5,1.1,1.2,1.6,2l1.7,3h-2L63.1,15.3z M61.8,11.8c1.2,0,2.1-0.5,2.1-1.8c0-1.3-1-1.8-2.1-1.8h-2.4v3.6H61.8z"/>
+	<path class="st1" d="M68.2,6.7h4.2c2.7,0,5.1,2.2,5.1,5.8s-2.4,5.8-5.1,5.8h-4.2V6.7z M72.4,16.7c1.6,0,3.2-1.3,3.2-4.2
+		c0-2.9-1.6-4.2-3.2-4.2h-2.4v8.5H72.4z"/>
+	<path class="st1" d="M79.5,6.7h1.8v11.5h-1.8V6.7z"/>
+	<path class="st1" d="M86.4,8.2h-3.6V6.7h9v1.5h-3.6v10h-1.8V8.2z"/>
+</g>
+</svg>

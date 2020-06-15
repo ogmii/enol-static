@@ -1,0 +1,1 @@
+$(".history .parallax-bg").parallax({imageSrc:"/img/archive-bg.jpg",speed:.5}),$(".news .parallax-bg").parallax({imageSrc:"/img/news-bg.jpg",speed:.5});

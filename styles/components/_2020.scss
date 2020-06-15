@@ -1,0 +1,97 @@
+.navigation-web {
+	justify-content: unset;
+	a {
+		margin: 0 5px;
+	}
+}
+
+
+
+	@media(max-width: 1400px) {
+.navigation-web .icon {
+		width: 30px;
+		height: 46px;
+		background-size: 30px 46px;
+		margin-top: 18px;
+	}
+	
+}
+
+	@media(max-width: 1160px) {
+.navigation-web .icon {
+		display:none;
+	}
+	
+}
+
+
+@media (max-width: 1400px) {
+  .navigation-web {
+    display: flex; } }
+
+
+@media(max-width: 1400px) {
+    .sites-menu {
+    width: unset !important;
+    justify-content: unset !important;
+    	a {
+    		div {
+    			width: 30px !important;
+		height: 46px !important;
+		background-size: 30px 46px !important;
+		margin-top: 18px !important;
+		margin: 0 5px;
+    		}
+    	}
+    }
+    }
+
+
+    .mobile-icons {
+        display: flex;
+    justify-content: center;
+    max-with: 300px;
+        display: flex;
+    justify-content: center;
+    	a {
+    		div {
+    			width: 40px;
+    			height: 61px;
+    			margin: 0 3px;
+    		}
+
+    		.news {
+    			background-image: url(../img/home_news.svg);
+    		}
+    		.history {
+    			background-image: url(../img/home_archive.svg);
+    		}
+
+    		.icon-egram {
+    			background-image: url(../svg/home_eg.svg);
+    		}
+    		.icon-inpo {
+    			background-image: url(../svg/home_info.svg);
+    		}
+    		.icon-fb {
+    			background-image: url(../svg/home_fb.svg);
+    		
+    		}
+    		.icon-video {
+    			background-image: url(../svg/home_video.svg);
+
+    		}
+    	}
+    }
+
+    .enter-quiz.menu {
+    	top: 80px;
+    }
+
+    .mobile-menu {
+   		height: 220px;
+    }
+
+    .login-menu {
+    transform: translateY(162px);
+    }

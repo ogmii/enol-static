@@ -1,0 +1,36 @@
+#findSchool.disabled {
+    position: absolute;
+    background-image: url(../img/PSC_POTVRDIT_BW.svg);
+    width: 123px;
+    height: 25px;
+    right: 15px;
+    top: 8px;
+    cursor: pointer;
+}
+
+#findSchool.active {
+    position: absolute;
+    background-image: url(../img/PSC_POTVRDIT_ACTIVE.svg);
+    width: 123px;
+    height: 25px;
+    right: 15px;
+    top: 8px;
+    cursor: pointer;
+}
+
+#gdpr-team, #gdpr-teacher {
+    position: absolute;
+    top: 5px;
+    transform: translateX(-10px);
+}
+
+.gdpr-wrap {
+    position: relative;
+}
+
+.gdpr-info {
+    margin: 25px auto;
+    width: 35%;
+    font-size: 12px;
+    color: gray;
+}
