@@ -2666,3 +2666,7 @@ header .mobile-menu .sites-menu {
 
 .login-menu {
   transform: translateY(162px); }
+
+.header-hover.countdown {
+  transform: translate(6%, -23%);
+  width: 320px; }
