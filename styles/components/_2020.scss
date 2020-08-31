@@ -92,6 +92,15 @@
   }
 }
 
+.section-lecture.enol-registration {
+  align-items: flex-end;
+  @media(max-width: 700px) {
+    height: 100vh;
+    background-size: auto !important;
+    max-height: 780px;
+  }
+}
+
 .enter-quiz.menu {
   top: 80px;
 }
@@ -113,14 +122,23 @@
 .enol.enol-registration {
   background-image: url("/img/enol-header_2020.jpg");
   background-size: cover;
+  height: 100vh !important;
   @media (max-width: 1100px) {
     background-image: url("/img/enol-header-mobile_2020.jpg");
-    background-position: center;
+    background-position: top;
+  }
+
+  @media (max-width: 700px) {
+    height: 125vh !important;
+    max-height: unset !important;
   }
 }
 
 .enol.enol-registration .lecture-wrap {
-
+  background-color: #bf946d;
+  height: auto;
+  padding: 50px;
+  width: 100%;
   @media (max-width: 1300px) {
 
     flex-direction: column;
@@ -128,15 +146,15 @@
     align-items: center;
   }
   @media (max-width: 1100px) {
-    display: none;
+    //display: none;
+    padding: 25px;
   }
 
-  height: inherit;
-  margin: 250px 225px;
+  margin: 0;
   position: relative;
   //max-width: 920px;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
 
   .col-text {
     width: 50%;
@@ -148,8 +166,8 @@
     }
 
     h3 {
-      font-size: 24pt;
-      color: #bf946d;
+      font-size: 23pt;
+      color: #fefefe;
       //191, 148, 109
       //background: rgba(255, 255, 255, .8);
       //color: rgba(0, 0, 0, .8);
@@ -157,7 +175,7 @@
       font-family: urban-grotesque-semi-bold;
       //transform: translateY(-250px);
       @media (max-width: 1300px) {
-
+        font-size: 18pt;
         text-align: center;
       }
     }
@@ -165,11 +183,11 @@
 
     p {
       @media (max-width: 1300px) {
-
+        font-size: 12pt;
         text-align: center;
       }
       text-align: left;
-      font-size: 18pt;
+      font-size: 17pt;
       color: #fefefe;
       //position: absolute;
       //bottom: 0;
@@ -201,17 +219,25 @@
 
     .button {
       padding-top: 5px;
+      margin-bottom: 0 !important;
       width: 300px;
       height: 80px;
       border-radius: 50px;
       //background-color: #fefefe;
       background: rgba(255, 255, 255, .15);
       //opacity: 0.15;
-      border: 2px solid #bf946d;
-      margin-bottom: 5px;
+      border: 2px solid #fefefe;
       justify-content: center;
       display: flex;
       align-items: center;
+
+      @media (max-width: 1100px) {
+        width: 230px;
+        height: 40px;
+        font-size: 20px;
+        padding-top: 0;
+      }
+
     }
   }
 }
