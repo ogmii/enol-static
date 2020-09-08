@@ -94,9 +94,9 @@
 
 .section-lecture.enol-registration {
   align-items: flex-end;
+  height: calc(100vh - 120px) !important;
   @media(max-width: 700px) {
-    height: 100vh;
-    background-size: auto !important;
+    background-size: cover !important;
     max-height: 780px;
   }
 }
@@ -122,22 +122,22 @@
 .enol.enol-registration {
   background-image: url("/img/enol-header_2020.jpg");
   background-size: cover;
-  height: 100vh !important;
+  //height: 100vh !important;
   @media (max-width: 1100px) {
     background-image: url("/img/enol-header-mobile_2020.jpg");
     background-position: top;
   }
 
   @media (max-width: 700px) {
-    height: 125vh !important;
+    height: calc(100vh - 120px) !important;
     max-height: unset !important;
   }
 }
 
-.enol.enol-registration .lecture-wrap {
+.registration-text.lecture-wrap {
   background-color: #bf946d;
   height: auto;
-  padding: 50px;
+  padding: 75px 200px;
   width: 100%;
   @media (max-width: 1300px) {
 
@@ -240,4 +240,13 @@
 
     }
   }
+}
+
+.questions-wrap div.active {
+  margin-left: 25px !important;
+  margin-right: 25px !important;
+}
+
+.questions-wrap div {
+  padding: 0 4px;
 }
