@@ -2766,3 +2766,37 @@ header .mobile-menu .sites-menu {
           height: 40px;
           font-size: 20px;
           padding-top: 0; } }
+
+.questions-wrap div.active {
+  margin-left: 25px !important;
+  margin-right: 25px !important; }
+
+.questions-wrap div {
+  padding: 0 4px; }
+
+.questions-wrap a.active:after, .questions-wrap div.active:after {
+  width: 80px !important;
+  height: 80px !important;
+  top: -8px !important;
+  left: -24px !important; }
+
+.questions-wrap a.active:nth-child(n+10):after, .questions-wrap div.active:nth-child(n+10):after {
+  left: -11px !important; }
+
+.questions-wrap a.active.done:nth-child(n+10):before, .questions-wrap div.active.done:nth-child(n+10):before {
+  transform: translate(18px, 10px) !important; }
+
+.questions-wrap a.active.done:before, .questions-wrap div.active.done:before {
+  transform: translate(7px, 10px); }
+
+.questions-wrap a.done:before, .questions-wrap div.done:before {
+  background-color: #6d8cc3 !important; }
+
+.navigation.bottom .questions-wrap .done:before {
+  background-color: #e0e0e0 !important; }
+
+body.quiz {
+  padding-bottom: 20px; }
+
+.question {
+  font-size: 18px; }

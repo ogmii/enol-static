@@ -1,1 +1,1 @@
-$(".history .parallax-bg").parallax({imageSrc:"/img/archive-bg.jpg",speed:.5}),$(".news .parallax-bg").parallax({imageSrc:"/img/news-bg.jpg",speed:.5});
+$(".history .parallax-bg").parallax({imageSrc:"/img/archive-bg.jpg",speed:.5}),$(".news .parallax-bg").parallax({imageSrc:"/img/news-bg.jpg",speed:.5}),$("#save-answer").on("click",function(){$(".radio-answer").is(":checked")&&window.scroll({top:0,left:0,behavior:"smooth"})});
