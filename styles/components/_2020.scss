@@ -285,3 +285,18 @@ body.quiz {
 .question {
   font-size: 18px;
 }
+
+.question-wrap img {
+  width: 100%;
+}
+
+#question15 {
+  img {
+    padding: 0;
+    width:50%;
+  }
+}
+
+.modal-backdrop.fade {
+  opacity: 0.3 !important;
+}
