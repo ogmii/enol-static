@@ -136,9 +136,9 @@ function url_slug(s, opt) {
 var debug = false;
 
 // 'CONST'
-var startDate = new Date('09/08/2020 18:00:00 GMT+02:00');
+var startDate = new Date('10/16/2020 09:00:00 GMT+02:00');
 // var startDate = new Date('2019, 10, 8, 01:00:00');
-var endDate = new Date('09/08/2020 23:00:00 GMT+02:00');
+var endDate = new Date('10/16/2020 12:00:00 GMT+02:00');
 
 
 $(document).ready(function() {
@@ -627,6 +627,8 @@ $(document).ready(function() {
 
     $('.add-member').on('click', function() {
         $('#create-modal').modal('show');
+        $('#create-modal').addClass('show');
+
         var count = $('.add-member').length;
         if(count == 2) {
             $('#create-modal .modal-body div').addClass('member-img-2');
