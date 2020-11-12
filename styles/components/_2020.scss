@@ -247,7 +247,16 @@
   margin-right: 25px !important;
 }
 
+.questions-wrap a.active {
+  margin-left: 25px !important;
+  margin-right: 25px !important;
+}
+
 .questions-wrap div {
+  padding: 0 4px;
+}
+
+.questions-wrap a {
   padding: 0 4px;
 }
 
@@ -293,10 +302,225 @@ body.quiz {
 #question15 {
   img {
     padding: 0;
-    width:50%;
+    width: 50%;
   }
 }
 
 .modal-backdrop.fade {
   opacity: 0.3 !important;
+}
+
+[data-question-id="16"] {
+  width: 82% !important;
+}
+
+[data-question-id="19"], [data-question-id="20"] {
+  width: 60% !important;
+}
+
+[data-question-id="30"] {
+  width: 70% !important;
+}
+
+[data-question-id="21"] {
+  width: 80% !important;
+}
+
+@media(max-width: 560px) {
+  .dates-wrap .date-wrap {
+    max-width: 250px !important;
+  }
+}
+
+.dates-wrap .date-wrap {
+  max-width: unset !important;
+}
+
+.enol-light .wrap .enol-schema {
+  width: 783px !important;
+}
+
+@media (max-width: 1000px) {
+  .enol-light .wrap .enol-schema {
+    width: 265px !important;
+    background-size: 265px !important;
+  }
+}
+
+.enol-light .wrap .enol-schema {
+  background-image: url("../img/enol_infografika_2020.svg") !important;
+}
+
+@media (max-width: 1000px) {
+  .enol-light .wrap .enol-schema {
+    background-image: url("../img/enol_infografika_mobile_2020.svg") !important;
+  }
+}
+
+.questions-wrap a.done.wrong:before, .questions-wrap div.done.wrong:before {
+  background-color: #a44f4a !important;
+}
+
+.questions-wrap a.done.correct:before, .questions-wrap div.done.correct:before {
+  background-color: #638e60 !important;
+}
+
+.enol-gasnet {
+  background-image: url("../img/gasnet.jpg");
+  background-size: 85px 69px;
+  width: 85px;
+  height: 69px;
+}
+
+.header-hover {
+  transform: translate(1%, 113%) !important;
+}
+
+
+.dash .modal-backdrop.show {
+  background-color: #6585c2 !important;
+  opacity: 0.95 !important;
+}
+
+.efekt-logo {
+  background-image: url("../img/logo-efekt.png");
+  background-size: 191px 93px;
+  width: 191px;
+  height: 93px;
+}
+
+.vesmir-logo {
+  background-image: url("../img/vesmir.jpg");
+  background-size: 191px 41px;
+  width: 191px;
+  height: 41px;
+}
+
+.section-troubleshooting {
+  padding: 0 15%;
+  background-image: url("../img/hotline_BG_011019.jpg") !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  ul {
+    list-style: none;
+    text-align: center;
+    font-size: 32px;
+    li:before {
+      background: url("../img/phone.svg") no-repeat left 5px;
+      padding-left: 1em;
+      width: 35px;
+      height: 35px;
+      transform: translate(-140%, 25%);
+      background-size: 32px 32px;
+      content: ("");
+      position: absolute;
+    }
+  }
+  h3 {
+    font-size: 36px;
+    font-family: urban-grotesque-bold;
+  }
+
+  p {
+    font-size: 20px;
+    font-family: urban-grotesque-regular;
+  }
+}
+
+section.final {
+  display: flex;
+  justify-content: center;
+  padding: 35px 0;
+}
+
+.countdown {
+  display: flex;
+  justify-content: center;
+}
+
+.final a {
+  text-decoration: none;
+}
+
+section.final .box {
+  width: 250px;
+  height: 250px;
+  background: rgb(218,219,218);
+  background: linear-gradient(0deg, rgba(218,219,218,1) 0%, rgba(255,255,255,1) 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-left: 5px;
+  margin-right: 5px;
+  border-radius: 15px;
+  padding-top: 10px;
+  .stripe {
+    background-color: #eeeeee;
+    width: 100%;
+    font-family: 'urban-grotesque-italic';
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 50px;
+  }
+  p {
+    font-size: 19px;
+    padding-top: 5px;
+  }
+  p, .stripe {
+    text-align: center;
+    padding-top: 5px;
+    margin-bottom: 15px;
+  }
+}
+
+section.final .icon {
+  width: 72px;
+  height: 72px;
+  margin: 0 auto;
+}
+
+.box .title {
+  font-family: 'urban-grotesque-semi-bold';
+}
+
+#box-documents .icon {
+  background-image: url("../img/button-dokumenty.svg");
+}
+#box-lectures .icon {
+  background-image: url("../img/button-prednasky.svg");
+}
+#box-finale .icon {
+  background-image: url("../img/button-vyhlaseni.svg");
+}
+
+
+
+section.final .box.active {
+  background: rgb(22,51,3);
+  background: linear-gradient(0deg, rgba(22,51,3,1) 0%, rgba(101,144,98,1) 100%);
+  color: white;
+  .stripe {
+    background-color: #628e5f;
+  }
+}
+
+#box-documents.active .icon {
+  background-image: url("../img/button-dokumenty_active.svg");
+}
+#box-lectures.active .icon {
+  background-image: url("../img/button-prednasky_active.svg");
+}
+#box-finale.active .icon {
+  background-image: url("../img/button-vyhlaseni_active.svg");
+}
+
+section.stream {
+  height: 100vh;
+  background-color: black;
 }

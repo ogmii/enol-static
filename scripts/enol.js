@@ -1,9 +1,8 @@
-
 // FUNCTIONS
 function getUri() {
     var url = $(location).attr('href');
     parts = url.split("/");
-    last_part = parts[parts.length-1];
+    last_part = parts[parts.length - 1];
 
     return last_part;
 }
@@ -15,8 +14,8 @@ function validateEmail(email) {
 }
 
 function hoverArrow() {
-    $('.register-arrow').animate({top:'+=20'}, 1000);
-    $('.register-arrow').animate({top:'-=20'}, 1000, hoverArrow);
+    $('.register-arrow').animate({top: '+=20'}, 1000);
+    $('.register-arrow').animate({top: '-=20'}, 1000, hoverArrow);
 }
 
 function url_slug(s, opt) {
@@ -28,7 +27,7 @@ function url_slug(s, opt) {
         'limit': undefined,
         'lowercase': true,
         'replacements': {},
-        'transliterate': (typeof(XRegExp) === 'undefined') ? true : false
+        'transliterate': (typeof (XRegExp) === 'undefined') ? true : false
     };
 
     // Merge options
@@ -118,7 +117,7 @@ function url_slug(s, opt) {
     }
 
     // Replace non-alphanumeric characters with our delimiter
-    var alnum = (typeof(XRegExp) === 'undefined') ? RegExp('[^a-z0-9]+', 'ig') : XRegExp('[^\\p{L}\\p{N}]+', 'ig');
+    var alnum = (typeof (XRegExp) === 'undefined') ? RegExp('[^a-z0-9]+', 'ig') : XRegExp('[^\\p{L}\\p{N}]+', 'ig');
     s = s.replace(alnum, opt.delimiter);
 
     // Remove duplicate delimiters
@@ -136,86 +135,145 @@ function url_slug(s, opt) {
 var debug = false;
 
 // 'CONST'
-var startDate = new Date('10/16/2020 09:00:00 GMT+02:00');
+var startDate = new Date('11/06/2020 09:00:00 GMT+01:00');
 // var startDate = new Date('2019, 10, 8, 01:00:00');
-var endDate = new Date('10/16/2020 12:00:00 GMT+02:00');
+var endDate = new Date('11/06/2020 12:00:00 GMT+01:00');
+
+/// VOSTRY DATUMY
+var finaleStart = new Date('11/11/2020 16:00:00 GMT+01:00');
+var streamStart = new Date('11/13/2020 17:00:00 GMT+01:00');
 
 
-$(document).ready(function() {
+//var finaleStart = new Date('11/07/2020 13:27:00 GMT+01:00');
+//var streamStart = new Date('11/07/2020 13:28:00 GMT+01:00');
+//
+$(document).ready(function () {
+    var lectures = $('#countdown-lectures');
+    var documents = $('#countdown-documents');
+    var finale = $('#countdown-finale');
 
-    // $('.enol-countdown').countdown(startDate, function(event) {
-    //     console.log(event.offset.minutes);
-    //     $('.days').html(event.offset.totalDays);
-    //     $('.hours').html(event.offset.hours);
-    //     $('.minutes').html(event.offset.minutes);
-    //     $('.seconds').html(event.offset.seconds);
-    // });
-    // COUNTDOWN
 
-    if(new Date() <= startDate) {
-        $('.enol-countdown').countdown(startDate, function(event) {
-            $('.days').html(event.strftime('%D'));
-            $('.hours').html(event.strftime('%H'));
-            $('.minutes').html(event.strftime('%M'));
-            $('.seconds').html(event.strftime('%S'));
+    // if (finaleStart > new Date()) {
+        lectures.countdown(finaleStart, function (event) {
+            $('#countdown-lectures .hours').html(event.strftime('%I'));
+            $('#countdown-lectures .minutes').html(event.strftime('%M'));
+            $('#countdown-lectures .seconds').html(event.strftime('%S'));
         });
-    } else {
-        $('.enol-countdown').countdown(endDate, function(event) {
-            $('.hours').html(event.strftime('%H'));
-            $('.minutes').html(event.strftime('%M'));
-            $('.seconds').html(event.strftime('%S'));
 
-        })
-    }
-
-    // COUNTDOWN CALLBACK
-
-    $('.enol-countdown').on('finish.countdown', function() {
-        $('.enter-quiz').removeClass('disabled');
-        $('.enol-start').addClass('started');
-        $('.enol-countdown').empty().append($('<div class="hours"></div>:<div class="minutes"></div>:<div class="seconds"></div>'))
-        $('.enol-countdown').countdown(endDate, function(event) {
-            $('.hours').html(event.strftime('%H'));
-            $('.minutes').html(event.strftime('%M'));
-            $('.seconds').html(event.strftime('%S'));
-        })
-    });
-
-    // QUIZ COUNT DOWN
-    if(new Date() <= endDate) {
-        $('#quiz-countdown').countdown(endDate, function(event) {
-            $('#hours').html(event.strftime('%H'));
-            $('#minutes').html(event.strftime('%M'));
-            $('#seconds').html(event.strftime('%S'));
+        documents.countdown(finaleStart, function (event) {
+            $('#countdown-documents .hours').html(event.strftime('%I'));
+            $('#countdown-documents .minutes').html(event.strftime('%M'));
+            $('#countdown-documents .seconds').html(event.strftime('%S'));
         });
-    }
-    // if(new Date() <= endDate || startDate <= new Date()) {
-    // 	$('.enol-countdown').countdown(endDate, function(event) {
-    // 		$('#hours').html(event.strftime('%H'));
-    // 		$('#minutes').html(event.strftime('%M'));
-    // 		$('#seconds').html(event.strftime('%S'));
-    // 	});
     // }
 
-    // $('.enol-countdown').on('finish.countdown', function() {
-    //     $('.enol-start').removeClass('enol-start');
-    // });
+    // if (streamStart > new Date()) {
+        finale.countdown(streamStart, function (event) {
+            $('#countdown-finale .hours').html(event.strftime('%I'));
+            $('#countdown-finale .minutes').html(event.strftime('%M'));
+            $('#countdown-finale .seconds').html(event.strftime('%S'));
+        });
+    // }
 
-    $('.enter-quiz').on('click', function(e) {
-        if($(this).hasClass('disabled') && debug == false) {
+    lectures.on('finish.countdown', function () {
+        $("#box-lectures").addClass("active");
+        $("a.lectures").attr('target','_blank');
+        $("#box-lectures .stripe").text("Vstoupit");
+    });
+    documents.on('finish.countdown', function () {
+        $("#box-documents").addClass("active");
+        $("a.documents").attr('target','_blank');
+        $("#box-documents .stripe").text("Vstoupit");
+    });
+    finale.on('finish.countdown', function () {
+        $("#box-finale").addClass("active");
+        $("a.final").attr('target','_blank');
+        $("#box-finale .stripe").text("Vstoupit");
+    });
+
+    $("#box-lectures, #box-documents, #box-finale").on("click", function (e) {
+        if (this == $("#box-finale").get(0) && !$("#box-finale").hasClass("active")) {
+            toastr.error("Stream ještě nezačal");
+            e.preventDefault();
+        }
+        if ((this == $("#box-lectures").get(0) || this == $("#box-documents").get(0)) && !$("#box-lectures, #box-documents").hasClass("active")) {
+            toastr.error("Finále ještě nezačalo");
+            e.preventDefault();
+        }
+    });
+// $('.enol-countdown').countdown(startDate, function(event) {
+//     console.log(event.offset.minutes);
+//     $('.days').html(event.offset.totalDays);
+//     $('.hours').html(event.offset.hours);
+//     $('.minutes').html(event.offset.minutes);
+//     $('.seconds').html(event.offset.seconds);
+// });
+// COUNTDOWN
+
+// if(new Date() <= startDate) {
+//     $('.enol-countdown').countdown(startDate, function(event) {
+//         $('.days').html(event.strftime('%D'));
+//         $('.hours').html(event.strftime('%H'));
+//         $('.minutes').html(event.strftime('%M'));
+//         $('.seconds').html(event.strftime('%S'));
+//     });
+// } else {
+//     $('.enol-countdown').countdown(endDate, function(event) {
+//         $('.hours').html(event.strftime('%H'));
+//         $('.minutes').html(event.strftime('%M'));
+//         $('.seconds').html(event.strftime('%S'));
+//
+//     })
+// }
+//
+// COUNTDOWN CALLBACK
+//
+// $('.enol-countdown').on('finish.countdown', function() {
+//     $('.enter-quiz').removeClass('disabled');
+//     $('.enol-start').addClass('started');
+//     $('.enol-countdown').empty().append($('<div class="hours"></div>:<div class="minutes"></div>:<div class="seconds"></div>'))
+//     $('.enol-countdown').countdown(endDate, function(event) {
+//         $('.hours').html(event.strftime('%H'));
+//         $('.minutes').html(event.strftime('%M'));
+//         $('.seconds').html(event.strftime('%S'));
+//     })
+// });
+
+// QUIZ COUNT DOWN
+// if(new Date() <= endDate) {
+//     $('#quiz-countdown').countdown(endDate, function(event) {
+//         $('#hours').html(event.strftime('%H'));
+//         $('#minutes').html(event.strftime('%M'));
+//         $('#seconds').html(event.strftime('%S'));
+//     });
+// }
+// if(new Date() <= endDate || startDate <= new Date()) {
+// 	$('.enol-countdown').countdown(endDate, function(event) {
+// 		$('#hours').html(event.strftime('%H'));
+// 		$('#minutes').html(event.strftime('%M'));
+// 		$('#seconds').html(event.strftime('%S'));
+// 	});
+// }
+
+// $('.enol-countdown').on('finish.countdown', function() {
+//     $('.enol-start').removeClass('enol-start');
+// });
+
+    $('.enter-quiz').on('click', function (e) {
+        if ($(this).hasClass('disabled') && debug == false) {
             e.preventDefault();
             toastr.error('Olympiáda ještě nezačala.');
         }
     });
-    // ENOL LOGO
+// ENOL LOGO
 
-    if(!$('.enol-logo-black').is(':visible')) {
-        $(document).on('scroll click', function() {
+    if (!$('.enol-logo-black').is(':visible')) {
+        $(document).on('scroll click', function () {
             $('.enol-logo-black').fadeIn();
         });
     }
 
-    // BUTTON HOVERS
+// BUTTON HOVERS
     $('.enol-start').on({
         mouseenter: function () {
             $('.countdown').fadeIn(300)
@@ -224,7 +282,7 @@ $(document).ready(function() {
             $('.countdown').fadeOut(300)
         }
     })
-    if($('.login').is(':visible')) {
+    if ($('.login').is(':visible')) {
         $('.login').on({
             mouseenter: function () {
                 $('.header-hover.actions').fadeIn(300)
@@ -235,20 +293,20 @@ $(document).ready(function() {
         })
     }
 
-    // ARROW HOVER
+// ARROW HOVER
 
     hoverArrow();
 
-    // GDPR TOOLTIP
+// GDPR TOOLTIP
 
     /*$('.gdpr').tooltip({
         html: true,
         title: '<p class="pt10">Ochrana osobních údajů</p><p>Osobní údaje zpracováváme pouze na základě a v rozsahu dovoleném obecným nařízením Evropského parlamentu a Rady č. 2016/679, o ochraně osobních údajů a předpisů souvisejících.</p><p>Správcem osobních údajů je společnost Energetická gramotnost, s.r.o., IČO 05405858, se sídlem Šlikova 1119/9, Praha 6, Břevnov.</p><p>Povinné údaje k registraci jsou jméno soutěžícího studenta nebo učitele a jeho e-mailová adresa.</p><p>Poskytované údaje slouží pouze k zajištění organizace soutěže, zasílání organizačních pokynů a neslouží k marketingovým účelům.</p><p>Zpracování osobních údajů ukončíme po vyhodnocení a ukončení Energetické olympiády, nejpozději však do 31.12.2018.</p><p>Osobní údaje jsou zpracovány prostřednictvím online systému, ke kterému mají registrovaní účastníci přístup, mohou tak vidět, měnit a mazat tyto údaje.</p>'
     });*/
 
-    // OPEN MOBILE MENU
-    $('.menu-open').on('click', function() {
-        if(!$('.mobile-menu').is(':visible')) {
+// OPEN MOBILE MENU
+    $('.menu-open').on('click', function () {
+        if (!$('.mobile-menu').is(':visible')) {
             $('.mobile-menu').slideDown()
         } else {
             $('.mobile-menu').slideUp()
@@ -256,27 +314,27 @@ $(document).ready(function() {
     })
 
 
-    // FILTER DEFAULT
+// FILTER DEFAULT
 
     var defKrajSel = $('#kraj_id');
     var defOkresSel = $('#okres_id');
     var defCitySel = $('#city');
 
-    // FILTER IDs
+// FILTER IDs
 
-    var teamIds = { krajId: '', okresId: '', city: ''}
+    var teamIds = {krajId: '', okresId: '', city: ''}
     var krajId = [];
     var okresId = [];
     var city = [];
 
-    $('.team-row').each(function() {
-        if($.inArray($(this).attr('kraj-id'), krajId)) {
+    $('.team-row').each(function () {
+        if ($.inArray($(this).attr('kraj-id'), krajId)) {
             krajId.push($(this).attr('kraj-id'));
         }
-        if($.inArray($(this).attr('okres-id'), okresId)) {
+        if ($.inArray($(this).attr('okres-id'), okresId)) {
             okresId.push($(this).attr('okres-id'));
         }
-        if($.inArray($(this).attr('city'), city)) {
+        if ($.inArray($(this).attr('city'), city)) {
             city.push($(this).attr('city'));
         }
     });
@@ -285,33 +343,33 @@ $(document).ready(function() {
     teamIds.okresId = okresId;
     teamIds.krajId = krajId;
 
-    // TABLE SORTER
+// TABLE SORTER
 
-    // TABLE SORTER
+// TABLE SORTER
 
     $('.teams-table.admin-table').tablesorter({
         cssChildRow: "row-details",
-        dateFormat : "ddmmyyyy",
+        dateFormat: "ddmmyyyy",
         headers: {
-            1: { sorter: 'shortDate'},
-            4: { sorter: $('.points').length ? true : false },
-            5: { sorter: $('.points').length ? true : false },
+            1: {sorter: 'shortDate'},
+            4: {sorter: $('.points').length ? true : false},
+            5: {sorter: $('.points').length ? true : false},
         }
     });
 
     $('.teams-table.teacher-dash').tablesorter({
         headers: {
-            1: { sorter: false },
+            1: {sorter: false},
         }
     });
 
-    //  FLASH MESSAGE
+//  FLASH MESSAGE
 
-    if($('.flash').length) {
+    if ($('.flash').length) {
         $('.flash').slideDown(250).delay(5000).slideUp(250);
     }
 
-    // CUSTOM RADIO BUTTONS
+// CUSTOM RADIO BUTTONS
 
     $('.mCheckTeam').mCheckable({
         className: 'radioTeam'
@@ -324,31 +382,31 @@ $(document).ready(function() {
         className: 'radioAnswer'
     });
 
-    if($('.mCheckTeam').is(':checked')) {
+    if ($('.mCheckTeam').is(':checked')) {
         $('.mCheckTeam').prev('label').css('color', 'white')
     }
-    if($('.mCheckTeacher').is(':checked')) {
+    if ($('.mCheckTeacher').is(':checked')) {
         $('.mCheckTeacher').prev('label').css('color', 'white')
     }
 
-    $('.radioTeam, .radioTeacher, label, .mCheckTeacher, .mCheckTeam').on('click', function() {
-        if($('.mCheckTeam').is(':checked')) {
+    $('.radioTeam, .radioTeacher, label, .mCheckTeacher, .mCheckTeam').on('click', function () {
+        if ($('.mCheckTeam').is(':checked')) {
             $('.mCheckTeam').prev('label').css('color', 'white')
         } else {
             $('.mCheckTeam').prev('label').css('color', '#5d5958')
         }
-        if($('.mCheckTeacher').is(':checked')) {
+        if ($('.mCheckTeacher').is(':checked')) {
             $('.mCheckTeacher').prev('label').css('color', 'white')
         } else {
             $('.mCheckTeacher').prev('label').css('color', '#5d5958')
         }
     })
 
-    // ADD MEMBER
+// ADD MEMBER
 
-    $('#addMember').on('click', function() {
+    $('#addMember').on('click', function () {
         var count = $('.user').length;
-        if(count == 1) {
+        if (count == 1) {
             $('.removeMember').removeClass('inactive');
             $('.removeMember').addClass('active');
             $('.user[data-id=1]').clone().appendTo('.users');
@@ -364,7 +422,7 @@ $(document).ready(function() {
             // newMember.find('.findSchool').attr('id', 'findSchool2');
             newMember.find('.teacher-info').attr('id', 'teacher-info2').text('');
             $('#memberCount').text('Ještě můžete přidat jednoho člena');
-        } else if(count == 2) {
+        } else if (count == 2) {
             $('.addMember').addClass('inactive');
             $('.addMember').removeClass('active');
             $('.user[data-id=2]').clone().appendTo('.users');
@@ -383,19 +441,19 @@ $(document).ready(function() {
         }
     });
 
-    // REMOVE MEMBER
+// REMOVE MEMBER
 
 
-    $('#removeMember').on('click', function() {
+    $('#removeMember').on('click', function () {
         var count = $('.user').length;
-        if(count == 2) {
+        if (count == 2) {
             $('.users').children().last().remove();
             $('.addMember').removeClass('inactive');
             $('.addMember').addClass('active');
             $('.removeMember').removeClass('active');
             $('.removeMember').addClass('inactive');
             $('#memberCount').text('Ještě můžete přidat dva členy');
-        } else if(count == 3) {
+        } else if (count == 3) {
             $('.users').children().last().remove();
             $('.addMember').removeClass('inactive');
             $('.addMember').addClass('active');
@@ -403,10 +461,10 @@ $(document).ready(function() {
         }
     });
 
-    // VALIDATE FORM
+// VALIDATE FORM
 
-    $('.js--register').on('click', function(e) {
-        if($('#student').is(':checked')) {
+    $('.js--register').on('click', function (e) {
+        if ($('#student').is(':checked')) {
 
             var teamName = $('#teamName');
             var password = $('#password');
@@ -417,56 +475,56 @@ $(document).ready(function() {
             var email1 = $('#userEmail1');
             var class1 = $('#userClass1');
 
-            if(teamName.val() == '') {
+            if (teamName.val() == '') {
                 e.preventDefault();
                 toastr.error('Zadejte název týmu.');
-            } else if(password.val() == '' || password.val().length < 6) {
+            } else if (password.val() == '' || password.val().length < 6) {
                 e.preventDefault();
                 toastr.error('Zadejte heslo s nejméně 6 znaky.');
-            } else if(passwordConfirm.val() == '') {
+            } else if (passwordConfirm.val() == '') {
                 e.preventDefault();
                 toastr.error('Zadejte ověření hesla.');
-            } else if(school.val() == 0) {
+            } else if (school.val() == 0) {
                 e.preventDefault();
                 toastr.error('Vyberte školu pro tým.');
-            } else if(passwordConfirm.val() != password.val()) {
+            } else if (passwordConfirm.val() != password.val()) {
                 e.preventDefault();
                 toastr.error('Zadaná hesla se neshodují.');
-            } else if(userName1.val() == '') {
+            } else if (userName1.val() == '') {
                 e.preventDefault();
                 toastr.error('Zadejte jméno prvního člena týmu.');
-            } else if(userSurname1.val() == '') {
+            } else if (userSurname1.val() == '') {
                 e.preventDefault();
                 toastr.error('Zadejte příjmení prvního člena týmu.');
-            } else if(!validateEmail(email1.val())) {
+            } else if (!validateEmail(email1.val())) {
                 e.preventDefault();
                 toastr.error('Zadejte e-mail prvního člena týmu ve správném tvaru.');
-            } else if(class1.val() == '') {
+            } else if (class1.val() == '') {
                 e.preventDefault();
                 toastr.error('Zadejte třídu prvního člena týmu.');
             }
 
             // SECOND MEMBER
 
-            else if($('#userName2').length) {
+            else if ($('#userName2').length) {
                 var userName2 = $('#userName2');
                 var userSurname2 = $('#userSurame2');
                 var school2 = $('#school2');
                 var email2 = $('#userEmail2');
                 var class2 = $('#userClass2');
-                if(userName2.val() == '') {
+                if (userName2.val() == '') {
                     e.preventDefault();
                     toastr.error('Zadejte jméno druhého člena týmu.');
-                } else if(userSurname2.val() == '') {
+                } else if (userSurname2.val() == '') {
                     e.preventDefault();
                     toastr.error('Zadejte příjmení druhého člena týmu.');
-                } else if(class2.val() == '') {
+                } else if (class2.val() == '') {
                     e.preventDefault();
                     toastr.error('Zadejte třídu druhého člena týmu.');
-                } else if(!validateEmail(email2.val())) {
+                } else if (!validateEmail(email2.val())) {
                     e.preventDefault();
                     toastr.error('Zadejte e-mail druhého člena týmu ve správném tvaru.');
-                } else if(email2.val() == email1.val()) {
+                } else if (email2.val() == email1.val()) {
                     e.preventDefault();
                     toastr.error('Každý člen týmu musí mít jedinečný email');
                 }
@@ -474,24 +532,24 @@ $(document).ready(function() {
 
             // THIRD MEMBER
 
-            else if($('#userName3').length) {
+            else if ($('#userName3').length) {
                 var userName3 = $('#userName3');
                 var userSurname3 = $('#userSurame3');
                 var class3 = $('#userClass3');
                 var email3 = $('#userEmail3');
-                if(userName3.val() == '') {
+                if (userName3.val() == '') {
                     e.preventDefault();
                     toastr.error('Zadejte jméno třetího člena týmu.');
-                } else if(userSurname3.val() == '') {
+                } else if (userSurname3.val() == '') {
                     e.preventDefault();
                     toastr.error('Zadejte příjmení třetího člena týmu.');
-                } else if(class3.val() == '') {
+                } else if (class3.val() == '') {
                     e.preventDefault();
                     toastr.error('Zadejte třídu třetího člena týmu.');
-                } else if(!validateEmail(email3.val())) {
+                } else if (!validateEmail(email3.val())) {
                     e.preventDefault();
                     toastr.error('Zadejte e-mail třetího člena týmu ve správném tvaru.');
-                } else if(email3.val() == email2.val() || email3.val() == email1.val()) {
+                } else if (email3.val() == email2.val() || email3.val() == email1.val()) {
                     e.preventDefault();
                     toastr.error('Každý člen týmu musí mít jedinečný email');
                 }
@@ -500,7 +558,7 @@ $(document).ready(function() {
 
             // TEACHER
 
-        } else if($('#teacher').is(':checked')) {
+        } else if ($('#teacher').is(':checked')) {
             var teacherPassword = $('#passwordConfirmTeacher').val();
             var teacherPasswordConfirm = $('#passwordConfirmTeacher').val();
             var teacherName = $('#teacherName').val();
@@ -508,22 +566,22 @@ $(document).ready(function() {
             var teacherSchool = $('#teacherSchool').val();
             var teacherEmail = $('#teacherEmail').val();
 
-            if(teacherName == '') {
+            if (teacherName == '') {
                 e.preventDefault()
                 toastr.error('Zadejte Vaše jméno.')
-            } else if(teacherSurname == '') {
+            } else if (teacherSurname == '') {
                 e.preventDefault()
                 toastr.error('Zadejte Vaše příjmení.')
-            } else if(!validateEmail(teacherEmail)) {
+            } else if (!validateEmail(teacherEmail)) {
                 e.preventDefault()
                 toastr.error('Zadejte Váš e-mail ve správném tvaru.');
-            } else if(teacherSchool == '') {
+            } else if (teacherSchool == '') {
                 e.preventDefault()
                 toastr.error('Vyberte Vaší školu.');
-            } else if(teacherPassword == '' || teacherPassword.length < 6) {
+            } else if (teacherPassword == '' || teacherPassword.length < 6) {
                 e.preventDefault();
                 toastr.error('Zadejte heslo s nejméně 6 znaky.');
-            } else if(teacherPasswordConfirm != teacherPassword) {
+            } else if (teacherPasswordConfirm != teacherPassword) {
                 e.preventDefault();
                 toastr.error('Zadaná hesla se neshodují.');
             }
@@ -532,49 +590,49 @@ $(document).ready(function() {
 
     });
 
-    $('.update-btn').on('click', function(e) {
-        if($(this).parent().hasClass('update-form') || $(this).parent().hasClass('create-modal')) {
-            if($(this).parent().hasClass('update-form')) {
+    $('.update-btn').on('click', function (e) {
+        if ($(this).parent().hasClass('update-form') || $(this).parent().hasClass('create-modal')) {
+            if ($(this).parent().hasClass('update-form')) {
                 var name = $('#member-name').val();
                 var surname = $('#member-surname').val();
                 var email = $('#member-email').val();
                 var classs = $('#member-class').val();
-            } else if($(this).parent().hasClass('create-modal')) {
+            } else if ($(this).parent().hasClass('create-modal')) {
                 var name = $('#name').val();
                 var surname = $('#surname').val();
                 var email = $('#email').val();
                 var classs = $('#class').val();
             }
 
-            if(name == '') {
+            if (name == '') {
                 e.preventDefault()
                 toastr.error('Jméno je povinný údaj.')
-            } else if(surname == '') {
+            } else if (surname == '') {
                 e.preventDefault()
                 toastr.error('Příjmení je povinný údaj.')
-            } else if(!validateEmail(email)) {
+            } else if (!validateEmail(email)) {
                 e.preventDefault()
                 toastr.error('Zadejte e-mail ve správném tvaru.');
-            } else if(classs == '') {
+            } else if (classs == '') {
                 e.preventDefault()
                 toastr.error('Třída je povinný údaj.');
             }
         }
     })
 
-    // TEAM LOGIN
+// TEAM LOGIN
 
-    $('#teamName').keyup(function(){
+    $('#teamName').keyup(function () {
         $('#teamLogin').val(url_slug($('#teamName').val()));
     });
-    $('#teacherEmail').keyup(function(){
+    $('#teacherEmail').keyup(function () {
         $('.teacher-login').text($('#teacherEmail').val());
     });
 
-    // FORM STUDENT/TEACHER
+// FORM STUDENT/TEACHER
 
-    $('.formType').on('change', function() {
-        if($('#student').is(':checked')) {
+    $('.formType').on('change', function () {
+        if ($('#student').is(':checked')) {
             $('.formTeacher').hide();
             $('.formStudent').show();
         } else {
@@ -583,11 +641,11 @@ $(document).ready(function() {
         }
     })
 
-    // SLIDE DOWN TEAM DETAIL
+// SLIDE DOWN TEAM DETAIL
 
-    $(document).on('click', '.open-detail', function() {
+    $(document).on('click', '.open-detail', function () {
         row = $(this).parent().next('tr').find('.team-info-row .team-info');
-        if(row.is(':visible')) {
+        if (row.is(':visible')) {
             row.slideUp();
         } else {
             $(this).parent().next('tr').find('.team-info-row').show();
@@ -595,44 +653,48 @@ $(document).ready(function() {
         }
     });
 
-    // EMPTY MODAL ON CLOSE
+// EMPTY MODAL ON CLOSE
 
-    $('.close').on('click', function() {
+    $('.close').on('click', function () {
         $('.update-form').children('input').val('');
         $('.create-modal').children('input').val('');
     });
 
-    // OPEN MODAL TO LOG OUT OTHER USER FROM QUIZ
+// OPEN MODAL TO LOG OUT OTHER USER FROM QUIZ
 
     var hash = window.location.hash;
 
-    if(hash == '#userlogged') {
+    if (hash == '#userlogged') {
         $('#logout-modal').modal('show');
+        $(".modal-backdrop").addClass("show");
+        $("#logout-modal").addClass("show");
     }
-    if(hash == '#handedin') {
+    if (hash == '#handedin') {
         $('#finished-modal').modal('show');
+        $(".modal-backdrop").addClass("show");
+        $("#finished-modal").addClass("show");
     }
-    if(hash == '#added') {
+    if (hash == '#added') {
         toastr.success('Člen týmu byl úspěšně přidán.');
     }
-    if(hash == '#enolFinished') {
+    if (hash == '#enolFinished') {
         toastr.error('Energetická olympiáda již zkončila.');
     }
-    if(hash == '#teamFinished') {
+    if (hash == '#teamFinished') {
         toastr.error('Váš tým již olympiádu ukončil.');
     }
-    if(hash == '#registered') {
+    if (hash == '#registered') {
         toastr.success('Registrace proběhla úspěšně, na zadaný email bylo zasláno potvrzení.');
     }
 
-    $('.add-member').on('click', function() {
+    $('.add-member').on('click', function () {
         $('#create-modal').modal('show');
         $('#create-modal').addClass('show');
 
         var count = $('.add-member').length;
-        if(count == 2) {
+        if (count == 2) {
             $('#create-modal .modal-body div').addClass('member-img-2');
-        } else if(count == 1) {
+        } else if (count == 1) {
             $('#create-modal .modal-body div').addClass('member-img-3');
         }
     });
@@ -643,30 +705,30 @@ $(document).ready(function() {
     *
     */
 
-    // get school select
+// get school select
 
-    $(document).on('click', '.findSchool', function() {
+    $(document).on('click', '.findSchool', function () {
         var zip = $(this).next('.zip').val();
         var type = $(this).parent('label').parent().parent().attr('class');
         zip = $.trim(zip.replace(/\s/g, ''));
 
-        if(zip.length && isFinite(String(zip))) {
+        if (zip.length && isFinite(String(zip))) {
             $.ajax({
                 type: "POST",
                 url: "/school/find",
-                data: { zip: zip },
+                data: {zip: zip},
                 dataType: "json",
-                headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
-                success: function(schools) {
-                    if(schools.length !== 0) {
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                success: function (schools) {
+                    if (schools.length !== 0) {
                         var name = (type == 'formStudent') ? 'school' : 'teacherSchool';
                         var schoolId = (type == 'formStudent') ? 'school' : 'teacherSchool';
-                        var sel = $('<select class="wide school" name="' + name + '" id="'+ schoolId +'">');
+                        var sel = $('<select class="wide school" name="' + name + '" id="' + schoolId + '">');
                         sel.append($('<option value="0">Vyberte školu</option>'));
-                        $.each(schools, function(id, name) {
+                        $.each(schools, function (id, name) {
                             sel.append($('<option>').attr('value', id).text(name));
                         });
-                        if(type == 'formStudent') {
+                        if (type == 'formStudent') {
                             $('#school').remove();
                             $('label[for="school"]').append(sel);
                         } else {
@@ -685,25 +747,25 @@ $(document).ready(function() {
 
     });
 
-    // check if teacher exists for school
+// check if teacher exists for school
 
-    $(document).on('change', '.school', function() {
+    $(document).on('change', '.school', function () {
         var schoolId = $(this).val();
         var id = $(this).parent().parent().attr('data-id');
         $('#teacher-info').children('p').remove();
         $.ajax({
             type: "POST",
             url: "/user/teacher",
-            data: { schoolId: schoolId },
+            data: {schoolId: schoolId},
             dataType: "json",
-            headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
-            success: function(teacher) {
-                if(teacher != false) {
+            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+            success: function (teacher) {
+                if (teacher != false) {
                     var names = '';
                     var i = 1;
-                    if(teacher.name.length > 1) {
-                        $.each(teacher.name, function() {
-                            if(teacher.name.length == i) {
+                    if (teacher.name.length > 1) {
+                        $.each(teacher.name, function () {
+                            if (teacher.name.length == i) {
                                 names += this;
                             } else {
                                 names += this + ', ';
@@ -724,12 +786,12 @@ $(document).ready(function() {
 
     });
 
-    // MEMBER EDIT
+// MEMBER EDIT
 
 
-    $('.update-modal, .edit-btn').on('click', function(e) {
+    $('.update-modal, .edit-btn').on('click', function (e) {
         var id = $(this).attr('data-id');
-        if($(this).parent('p').length) {
+        if ($(this).parent('p').length) {
             var index = $(this).parent('p').index();
         } else {
             var index = $(this).parent('div').parent().index();
@@ -739,10 +801,10 @@ $(document).ready(function() {
         $.ajax({
             type: "POST",
             url: "/user/get",
-            data: { id: id },
+            data: {id: id},
             dataType: "json",
-            headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
-            success: function(member) {
+            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+            success: function (member) {
                 $('.modal-body').children('div').addClass('member-img-' + index);
                 $('#member-name').val(member[0].name)
                 $('#member-surname').val(member[0].surname)
@@ -753,69 +815,69 @@ $(document).ready(function() {
         });
     });
 
-    // FILTER
+// FILTER
 
-    $(document).on('change', '#kraj_id, #okres_id, #city', function() {
+    $(document).on('change', '#kraj_id, #okres_id, #city', function () {
         var type = $(this)[0].id
         var id = $('#' + type).val();
         $('.team-row').show();
         $('.team-info-row').hide();
-        if(type == 'kraj_id' && id == '') {
+        if (type == 'kraj_id' && id == '') {
             $('label[for=city]').next('#city').remove();
             defCitySel.insertAfter('label[for=city]');
             $('label[for=okres_id]').next('#okres_id').remove();
             defOkresSel.insertAfter('label[for=okres_id]');
-        } else if(type == 'kraj_id' && id != ''){
+        } else if (type == 'kraj_id' && id != '') {
             $('label[for=city]').next('#city').remove();
             defCitySel.insertAfter('label[for=city]');
-        } else if(type == 'okres_id' && id == 0) {
+        } else if (type == 'okres_id' && id == 0) {
             $('label[for=city]').next('#city').remove();
             defCitySel.insertAfter('label[for=city]');
         }
 
-        $('.team-row').each(function() {
-            if($('#kraj_id').val() != '' && $(this).attr('kraj-id') != $('#kraj_id').val()) {
-                $(this).hide();
-                // $(this).next('.row-details team-info-row').hide()
-            }
-            if($('#okres_id').val() != 0 && $(this).attr('okres-id') != $('#okres_id').val() && type != 'kraj_id') {
-                $(this).hide();
-                // $(this).next('.row-details team-info-row').hide()
-            }
-            if($('#city').val() != 0 && $(this).attr('city') != $('#city').val() && type != 'okres_id') {
-                $(this).hide();
-                // $(this).next('.row-details team-info-row').hide()
-            }
-        })
-
-        $.ajax({
-            type: "POST",
-            url: "/team/filter",
-            data: { type: type, id: id },
-            dataType: "json",
-            headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
-            success: function(members) {
-                if(members.select) {
-                    if(members.type == 'kraj_id') {		// okres select
-                        okresSel = $('<select id="okres_id" name="okres"><option value="0">Vyberte okres</option>');
-                        $.each(members.select, function(id, name) {
-                            okresSel.append($('<option value="' + id + '">' + name + '</option>'));
-                        });
-                        okresSel.append($('</select>'))
-                        $('label[for=okres_id]').next('#okres_id').remove();
-                        okresSel.insertAfter('label[for=okres_id]');
-                    } else if(members.type == 'okres_id') {		// city select
-                        citySel = $('<select id="city" name="city"><option value="0">Vyberte město</option>');
-                        $.each(members.select, function(id, name) {
-                            citySel.append($('<option value="' + id + '">' + name + '</option>'));
-                        });
-                        citySel.append($('</select>'))
-                        $('label[for=city]').next('#city').remove();
-                        citySel.insertAfter('label[for=city]');
-                    }
-                }
-            }
-        });
+        // $('.team-row').each(function() {
+        //         if($('#kraj_id').val() != '' && $(this).attr('kraj-id') != $('#kraj_id').val()) {
+        //             $(this).hide();
+        //             // $(this).next('.row-details team-info-row').hide()
+        //         }
+        //         if($('#okres_id').val() != 0 && $(this).attr('okres-id') != $('#okres_id').val() && type != 'kraj_id') {
+        //             $(this).hide();
+        //             // $(this).next('.row-details team-info-row').hide()
+        //         }
+        //         if($('#city').val() != 0 && $(this).attr('city') != $('#city').val() && type != 'okres_id') {
+        //             $(this).hide();
+        //             // $(this).next('.row-details team-info-row').hide()
+        //         }
+        //     })
+        //
+        //     $.ajax({
+        //         type: "POST",
+        //         url: "/team/filter",
+        //         data: { type: type, id: id },
+        //         dataType: "json",
+        //         headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+        //         success: function(members) {
+        //             if(members.select) {
+        //                 if(members.type == 'kraj_id') {		// okres select
+        //                     okresSel = $('<select id="okres_id" name="okres"><option value="0">Vyberte okres</option>');
+        //                     $.each(members.select, function(id, name) {
+        //                         okresSel.append($('<option value="' + id + '">' + name + '</option>'));
+        //                     });
+        //                     okresSel.append($('</select>'))
+        //                     $('label[for=okres_id]').next('#okres_id').remove();
+        //                     okresSel.insertAfter('label[for=okres_id]');
+        //                 } else if(members.type == 'okres_id') {		// city select
+        //                     citySel = $('<select id="city" name="city"><option value="0">Vyberte město</option>');
+        //                     $.each(members.select, function(id, name) {
+        //                         citySel.append($('<option value="' + id + '">' + name + '</option>'));
+        //                     });
+        //                     citySel.append($('</select>'))
+        //                     $('label[for=city]').next('#city').remove();
+        //                     citySel.insertAfter('label[for=city]');
+        //                 }
+        //             }
+        //         }
+        //     });
     });
 
     /*
@@ -824,65 +886,65 @@ $(document).ready(function() {
     *
     */
 
-    // quiz navigation
+// quiz navigation
 
-    $(document).on('click', '.nav-btn.next, .nav-btn.prev, .questions-wrap div', function(e) {
+    $(document).on('click', '.nav-btn.next, .nav-btn.prev, .questions-wrap div', function (e) {
         $("#source").addClass("d-none");
         $('.next').removeAttr('style');
         $('.prev').removeAttr('style');
 
-        if($('.quiz-wrap').hasClass('results')) {
+        if ($('.quiz-wrap').hasClass('results')) {
             $(this).trigger("click");
         }
 
         var currQuestion = $('.question-wrap').attr('data-question');
         var count = $('.top .questions-wrap div').length;
 
-        if(currQuestion == count && currQuestion == 1) {
+        if (currQuestion == count && currQuestion == 1) {
             e.preventDefault();
             return false;
         }
 
         $('.questions-wrap div').removeClass('active');
-        if($(this).hasClass('next')) {
+        if ($(this).hasClass('next')) {
             var questionId = currQuestion;
             questionId++;
             $('.questions-wrap div:nth-child(' + questionId + ')').addClass('active');
-            questionId == count ? $('.next').css({'color' : 'transparent','pointer-events' : 'none'}) : '' ;
-        } else if($(this).hasClass('prev')) {
+            questionId == count ? $('.next').css({'color': 'transparent', 'pointer-events': 'none'}) : '';
+        } else if ($(this).hasClass('prev')) {
             var questionId = currQuestion;
             questionId--;
-            questionId == 1 ? $('.prev').css({'color' : 'transparent','pointer-events' : 'none'}) : '' ;
+            questionId == 1 ? $('.prev').css({'color': 'transparent', 'pointer-events': 'none'}) : '';
             $('.questions-wrap div:nth-child(' + questionId + ')').addClass('active');
-        } else if($(this).parent('.questions-wrap')) {
+        } else if ($(this).parent('.questions-wrap')) {
             questionId = $(this).index() + 1;
             $('.questions-wrap div:nth-child(' + questionId + ')').addClass('active');
-            questionId == count ? $('.next').css({'color' : 'transparent','pointer-events' : 'none'}) : '' ;
-            questionId == 1 ? $('.prev').css({'color' : 'transparent','pointer-events' : 'none'}) : '' ;
+            questionId == count ? $('.next').css({'color': 'transparent', 'pointer-events': 'none'}) : '';
+            questionId == 1 ? $('.prev').css({'color': 'transparent', 'pointer-events': 'none'}) : '';
         }
-        if(questionId != currQuestion && questionId <= count && questionId != 0){
+        if (questionId != currQuestion && questionId <= count && questionId != 0) {
             $.ajax({
                 type: "GET",
                 url: "/quiz/navigation",
                 dataType: "json",
-                data: { questionId: questionId },
-                headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
-                success: function(data) {
-                    if(data.state == false) {
+                data: {questionId: questionId},
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                success: function (data) {
+                    if (data.state == false) {
                         window.location.href = "dash#userlogged";
-                    } else if(data.state == 'enol_finished') {
+                    } else if (data.state == 'enol_finished') {
                         window.location.href = "dash#enolFinished";
-                    } else if(data.state == 'team_finished') {
+                    } else if (data.state == 'team_finished') {
                         window.location.href = "dash#teamFinished";
                     }
-                    if(data.state != false && data.questions.length) {
+                    if (data.state != false && data.questions.length) {
                         var questionCount = $('.question-navigation-wrap').children().last().text();
                         // change wrap id
                         $('.question-wrap').attr('data-question', data.questions[0].question_id)
                         // intro
                         $('.intro-wrap').remove();
 
-                        if($('#question15').length > 0) {
+                        if ($('#question15').length > 0) {
                             $('#question15').remove();
                             $('<img src="" id="question-img" style="display:none;">').insertAfter('p.question')
                         }
@@ -916,18 +978,18 @@ $(document).ready(function() {
                         }
 
 
-
                         $('.question').html(data.questions[0].question);
                         // question img
                         $('question-img').attr('style', '');
-                        if(data.questions[0].image != '' && data.questions[0].questionId != 15) {
+                        if (data.questions[0].image != '' && data.questions[0].question_id != 15) {
                             $('#question-img').attr('src', '/img/quiz/' + data.questions[0].image);
                             ($('#question-img').is(':hidden')) ? $('#question-img').show() : '';
                         } else {
                             $('#question-img').attr('src', '');
                             $('#question-img').hide();
                         }
-                        //
+
+                        $('#question-img').attr('data-question-id', data.questions[0].question_id);
                         // var questionIds = [20,21];
                         //
                         // if ($.inArray(data.questions[0].question_id, questionIds) !== -1) {
@@ -939,7 +1001,7 @@ $(document).ready(function() {
                         (data.questions[0].portrait == true) ? $('#question-img').addClass('portrait') : $('#question-img').removeClass('portrait');
                         // options
                         var radio = ($('<div class="answers" style="display:flex; flex-direction:column">'));
-                        $.each(data.questions, function(index, value) {
+                        $.each(data.questions, function (index, value) {
                             var checked = (value.oid == data.answers[questionId]) ? 'checked="checked"' : '';
                             radio.append($('<div class="option-wrap"><input class="radio-answer" id="option_' + value.oid + '" name="answer" type="radio" value="' + value.oid + '" ' + checked + '><label for="option_' + value.oid + '">' + value.option + '</label></div>'));
                         });
@@ -954,34 +1016,40 @@ $(document).ready(function() {
         }
     });
 
-    // disable next & prev if loaded with last or first question active
+// disable next & prev if loaded with last or first question active
 
-    if(!$('.quiz-wrap').hasClass('results')) {
+    if (!$('.quiz-wrap').hasClass('results')) {
         var count = $('.top .questions-wrap div').length;
 
-        $('.questions-wrap .active').index() == 0 ? $('.prev').css({'color' : 'transparent','pointer-events' : 'none'}) : '' ;
-        $('.questions-wrap .active').index() + 1 == count ? $('.next').css({'color' : 'transparent','pointer-events' : 'none'}) : '' ;
+        $('.questions-wrap .active').index() == 0 ? $('.prev').css({
+            'color': 'transparent',
+            'pointer-events': 'none'
+        }) : '';
+        $('.questions-wrap .active').index() + 1 == count ? $('.next').css({
+            'color': 'transparent',
+            'pointer-events': 'none'
+        }) : '';
     }
 
-    // save question
-    $('#save-answer').on('click', function() {
+// save question
+    $('#save-answer').on('click', function () {
         var id = $('.question-wrap').attr('data-question');
         var selectedId = $('.option-wrap').children('input:checked').val();
-        if(selectedId) {
+        if (selectedId) {
             $.ajax({
                 type: "POST",
                 url: "/quiz/save",
                 dataType: "json",
-                data: { questionId: id, optionId: selectedId },
-                headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
-                success: function(question) {
+                data: {questionId: id, optionId: selectedId},
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                success: function (question) {
 
-                    if(question.state == true) {
+                    if (question.state == true) {
                         $('.questions-wrap .active').addClass('done');
                         toastr.success('Odpověď byla úspěšně uložena.')
-                    } else if(question.state == 'enol_finished') {
+                    } else if (question.state == 'enol_finished') {
                         window.location.href = "dash#enolFinished";
-                    } else if(question.state == 'team_finished') {
+                    } else if (question.state == 'team_finished') {
                         window.location.href = "dash#teamFinished";
                     } else {
                         window.location.href = "dash#userlogged";
@@ -1011,8 +1079,8 @@ $(document).ready(function() {
     }
 
 
-    $('#schoolZip, #teacherSchoolZip').on('keyup', function() {
-        if ($(this).val().length >= 5 ) {
+    $('#schoolZip, #teacherSchoolZip').on('keyup', function () {
+        if ($(this).val().length >= 5) {
             $(this).prev('.findSchool').removeClass('disabled').addClass('active');
         } else {
             $(this).prev('.findSchool').removeClass('active').addClass('disabled');
@@ -1020,7 +1088,7 @@ $(document).ready(function() {
 
     })
 
-    if($('.formStudent').is(':visible')) {
+    if ($('.formStudent').is(':visible')) {
         $('#gdpr-team').prop('required', true);
         $('#gdpr-teacher').removeAttr('required');
     } else {
@@ -1029,7 +1097,7 @@ $(document).ready(function() {
     }
 
 
-    $('#student, #teacher').on('click', function(e) {
+    $('#student, #teacher').on('click', function (e) {
         if ($(e.target)[0] === $('#student')[0]) {
             $('#gdpr-team').prop('required', true);
             $('#gdpr-teacher').removeAttr('required');
@@ -1046,4 +1114,5 @@ $(document).ready(function() {
         }
     })
 
-});
+})
+;
