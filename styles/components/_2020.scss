@@ -389,6 +389,13 @@ body.quiz {
   height: 93px;
 }
 
+.seven-logo {
+  background-image: url("../img/seven.jpeg");
+  background-size: 191px 67px;
+  width: 191px;
+  height: 67px;
+}
+
 .vesmir-logo {
   background-image: url("../img/vesmir.jpg");
   background-size: 191px 41px;
@@ -521,6 +528,15 @@ section.final .box.active {
 }
 
 section.stream {
+  flex-direction: column;
   height: 100vh;
   background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  p {
+    font-size: 17pt;
+    color: #fefefe;
+    margin-top: 25px;
+  }
 }
