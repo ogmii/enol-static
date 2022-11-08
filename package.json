@@ -8,7 +8,7 @@
 		"gulp-util": "latest"
 	},
 	"dependencies": {
-		"gulp": "^3.9.1",
+		"gulp": "^4.0.2",
 		"gulp-v3": "^3.12.1",
 		"jquery-parallax.js": "^1.5.0"
 	}
